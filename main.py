@@ -1,3 +1,14 @@
+def get_todos(filepath):
+    with open(filepath, "r") as file_local:
+        todos_local = file_local.readlines()
+    return todos_local
+
+
+def write_todos(filepath, todos_arg):
+    with open(filepath, "w") as file:
+        file.writelines(todos_arg)
+
+
 while True:
     user_act = input("Type add, show, edit, complete or exit: ")
     user_act = user_act.strip()
@@ -5,21 +16,14 @@ while True:
     if user_act.lower().startswith("add"):
         new_todo = user_act[4:] # Pega tudo após os 4 primeiros caracteres, ou seja, remove "add " do início
 
-        # Etapa 1: abre arquivo "todos.txt" em modo leitura ("r")
-        # e transforma o conteúdo em uma lista, cada linha é um item.
-        with open("todos.txt", "r") as file:
-            todos = file.readlines()
+        todos = get_todos(filepath="todos.txt")
 
         todos.append(new_todo + "\n")
 
-        # Etapa 2: abre arquivo em modo escrita ("w"), apaga o conteúdo anterior
-        # e escreve toda a lista atualizada no arquivo, item por item.
-        with open("todos.txt", "w") as file:
-                file.writelines(todos)
+        write_todos(filepath="todos.txt", todos_arg=todos)
 
     elif user_act.lower().startswith("show"):
-        with open("todos.txt", "r") as file:
-            todos = file.readlines()
+        todos = get_todos("todos.txt")
 
         for index, todo in enumerate(todos):
             todo = todo.strip("\n")  # remove quebra de linha
@@ -28,8 +32,7 @@ while True:
 
     elif user_act.lower().startswith("edit"):
         try:
-            with open("todos.txt", "r") as file:
-                todos = file.readlines()
+            todos = get_todos("todos.txt")
 
             edition = int(user_act[5:])
             edition -= 1
@@ -37,8 +40,8 @@ while True:
             your_todo = input("Write your todo: ") + "\n"
             todos[edition] = your_todo
 
-            with open("todos.txt", "w") as file:
-                file.writelines(todos)
+            write_todos("todos.txt", todos)
+
         except IndexError:
             print("Your command is not valid.")
             continue
@@ -47,15 +50,13 @@ while True:
         try:
             number = int(user_act[9:])
 
-            with open("todos.txt", "r") as file:
-                todos = file.readlines() # lê
+            todos = get_todos("todos.txt") # lê (uso de função)
 
             index = number - 1
             todo_to_remove = todos[index].strip("\n") # modifica
             todos.pop(index)
 
-            with open("todos.txt", "w") as file:
-                file.writelines(todos) # escreve
+            write_todos("todos.txt", todos) # escreve (uso de função)
 
             message = f"You removed the item '{todo_to_remove}' from the list"
             print(message)
