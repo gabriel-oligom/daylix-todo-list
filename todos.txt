@@ -4,5 +4,5 @@ Learn a Programming Language
 Take the trash out
 Read a book
 Improve my project
-Close the windows
 Finish the homework
+Create a function

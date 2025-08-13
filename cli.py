@@ -1,29 +1,25 @@
-def get_todos(filepath):
-    with open(filepath, "r") as file_local:
-        todos_local = file_local.readlines()
-    return todos_local
+# from functions import get_todos, write_todos
+import functions
+import time
 
-
-def write_todos(filepath, todos_arg):
-    with open(filepath, "w") as file:
-        file.writelines(todos_arg)
-
+now = time.strftime("%b %d, %Y, %H:%M:%S")
+print(f"It is {now}") 
 
 while True:
     user_act = input("Type add, show, edit, complete or exit: ")
     user_act = user_act.strip()
 
     if user_act.lower().startswith("add"):
-        new_todo = user_act[4:] # Pega tudo após os 4 primeiros caracteres, ou seja, remove "add " do início
+        new_todo = user_act[4:] # pega tudo após os 4 primeiros caracteres, ou seja, remove "add " do início
 
-        todos = get_todos(filepath="todos.txt")
+        todos = functions.get_todos() # chama get_todos com argumento padrão filepath="todos.txt"
 
         todos.append(new_todo + "\n")
 
-        write_todos(filepath="todos.txt", todos_arg=todos)
+        functions.write_todos(todos_arg=todos, filepath="todos.txt") # não é necessário escrever o filepath, pode deixar apenas o "todos"
 
     elif user_act.lower().startswith("show"):
-        todos = get_todos("todos.txt")
+        todos = functions.get_todos()
 
         for index, todo in enumerate(todos):
             todo = todo.strip("\n")  # remove quebra de linha
@@ -32,7 +28,7 @@ while True:
 
     elif user_act.lower().startswith("edit"):
         try:
-            todos = get_todos("todos.txt")
+            todos = functions.get_todos()
 
             edition = int(user_act[5:])
             edition -= 1
@@ -40,7 +36,7 @@ while True:
             your_todo = input("Write your todo: ") + "\n"
             todos[edition] = your_todo
 
-            write_todos("todos.txt", todos)
+            functions.write_todos(todos) # default argument
 
         except IndexError:
             print("Your command is not valid.")
@@ -50,13 +46,13 @@ while True:
         try:
             number = int(user_act[9:])
 
-            todos = get_todos("todos.txt") # lê (uso de função)
+            todos = functions.get_todos() # lê (uso de função)
 
             index = number - 1
             todo_to_remove = todos[index].strip("\n") # modifica
             todos.pop(index)
 
-            write_todos("todos.txt", todos) # escreve (uso de função)
+            functions.write_todos(todos) # escreve (uso de função)
 
             message = f"You removed the item '{todo_to_remove}' from the list"
             print(message)

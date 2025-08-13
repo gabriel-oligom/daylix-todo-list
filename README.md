@@ -11,20 +11,24 @@ O projeto Daylix funciona como uma lista de tarefas que o usuário pode modifica
 - ❌`exit`
 
 ### 🗂️ Estrutura do Projeto
-- `main.py`: código principal
+- `main.py`: código principal (loop de interação com o usuário)
+- `functions.py`: funções para ler/escrever tarefas
 - `todos.txt`: arquivo para salvar as tarefas
+- `gui.py`: protótipo de interface gráfica
+
 
 ### 🧱 Estrutura do Código
 O código está organizado com funções para:
-* `get_todos(filepath)`: lê as tarefas do arquivo e retorna uma lista (`todos`)
-* `write_todos(filepath, todos)`: recebe a lista de tarefas (`todos`) e salva no arquivo
+* `get_todos(filepath=FILEPATH)`: lê as tarefas do arquivo (default `"todos.txt"`) e retorna uma lista
+* `write_todos(todos, filepath=FILEPATH)`: salva a lista de tarefas no arquivo (default `"todos.txt"`)
+
 
 ### Como usar  
 1. Clone o repositório  
 2. Execute no terminal `python main.py` ou `py main.py` (requer Python instalado)  
 3. Siga as instruções na tela  
 
-#### 📌 Observações Importantes
-- O projeto é uma versão inicial e vai receber melhorias, como:
-  - Validação de entrada
-  - Interface gráfica no futuro
+### 📌 Futuras melhorias
+- Validação de entrada de usuário
+- Interface gráfica completa (`gui.py`)
+- Suporte a categorias ou prioridades para tarefas
