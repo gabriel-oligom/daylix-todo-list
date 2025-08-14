@@ -31,4 +31,3 @@ O código está organizado com funções para:
 ### 📌 Futuras melhorias
 - Validação de entrada de usuário
 - Interface gráfica completa (`gui.py`)
-- Suporte a categorias ou prioridades para tarefas
