@@ -7,11 +7,14 @@ add_Button = sg.Button("Add")
 list_box = sg.Listbox(values=functions.get_todos(), key="items",
                        enable_events=True, size=[40, 10])
 edit_Button = sg.Button("Edit")
+complete_Button = sg.Button("Complete")
+exit_Button = sg.Button("Exit")
 
 window = sg.Window("Daylix To-Do App",
                     layout=[[label],[input_box,add_Button],
-                      [list_box, edit_Button]],
-                        font=("Helvetica", 18))
+                      [list_box, edit_Button, complete_Button], 
+                      [exit_Button]],
+                      font=("Helvetica", 18))
 
 while True:
     event, values = window.read()
@@ -35,6 +38,15 @@ while True:
             todos[index] = new_todo
             functions.write_todos(todos)
             window["items"].update(values=todos)
+        case "Complete":
+            todo_to_complete = values["items"][0]
+            todos = functions.get_todos()
+            todos.remove(todo_to_complete)
+            functions.write_todos(todos)
+            window["items"].update(values=todos)
+            window["to-do"].update(value="")
+        case "Exit":
+            break
         case "items":
             window["to-do"].update(value=values["items"][0])
         case sg.WIN_CLOSED:

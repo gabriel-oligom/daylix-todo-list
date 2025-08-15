@@ -10,19 +10,21 @@ while True:
     user_act = user_act.strip()
 
     if user_act.lower().startswith("add"):
-        new_todo = user_act[4:] # pega tudo após os 4 primeiros caracteres, ou seja, remove "add " do início
+        new_todo = user_act[4:] # take everything after the first 4 characters, that is, remove `"add "` from the beginning
 
-        todos = functions.get_todos() # chama get_todos com argumento padrão filepath="todos.txt"
+
+        todos = functions.get_todos() # call 'get_todos' with the default argument `filepath="todos.txt"`
+
 
         todos.append(new_todo + "\n")
 
-        functions.write_todos(todos_arg=todos, filepath="todos.txt") # não é necessário escrever o filepath, pode deixar apenas o "todos"
+        functions.write_todos(todos_arg=todos, filepath="todos.txt") # is not necessary to put 'filepath' here, only 'todos_arg'
 
     elif user_act.lower().startswith("show"):
         todos = functions.get_todos()
 
         for index, todo in enumerate(todos):
-            todo = todo.strip("\n")  # remove quebra de linha
+            todo = todo.strip("\n")  # remove the breakline
             print(f"{index + 1}: {todo}")
         print(f"The length of the list is: {len(todos)}")
 
@@ -30,11 +32,11 @@ while True:
         try:
             todos = functions.get_todos()
 
-            edition = int(user_act[5:])
-            edition -= 1
+            edition_index = int(user_act[5:])
+            edition_index -= 1
 
             your_todo = input("Write your todo: ") + "\n"
-            todos[edition] = your_todo
+            todos[edition_index] = your_todo
 
             functions.write_todos(todos) # default argument
 
@@ -46,13 +48,13 @@ while True:
         try:
             number = int(user_act[9:])
 
-            todos = functions.get_todos() # lê (uso de função)
+            todos = functions.get_todos() # read (using the function)
 
             index = number - 1
-            todo_to_remove = todos[index].strip("\n") # modifica
+            todo_to_remove = todos[index].strip("\n") # modify
             todos.pop(index)
 
-            functions.write_todos(todos) # escreve (uso de função)
+            functions.write_todos(todos) # write (using the function)
 
             message = f"You removed the item '{todo_to_remove}' from the list"
             print(message)
