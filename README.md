@@ -1,7 +1,7 @@
 # Projeto Daylix: To-Do List📝
 #### Gerenciador de Tarefas (Modo Terminal + Interface Gráfica)
 Daylix é um gerenciador de tarefas simples que utiliza estrutura de dados e manipulação de arquivos `.txt` para armazenar informações.  
-Agora conta também com uma **versão inicial de interface gráfica** construída com FreeSimpleGUI, permitindo gerenciar tarefas com cliques.
+Agora conta também com uma **versão de interface gráfica** construída com FreeSimpleGUI, permitindo gerenciar tarefas com cliques.
 
 ### Funcionalidades
 #### Modo Terminal

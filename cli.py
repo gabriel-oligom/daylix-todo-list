@@ -12,10 +12,8 @@ while True:
     if user_act.lower().startswith("add"):
         new_todo = user_act[4:] # take everything after the first 4 characters, that is, remove `"add "` from the beginning
 
-
         todos = functions.get_todos() # call 'get_todos' with the default argument `filepath="todos.txt"`
-
-
+        
         todos.append(new_todo + "\n")
 
         functions.write_todos(todos_arg=todos, filepath="todos.txt") # is not necessary to put 'filepath' here, only 'todos_arg'
