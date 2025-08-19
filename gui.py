@@ -7,7 +7,6 @@ if not os.path.exists("todos.txt"):
     with open("todos.txt", "w") as file:
         pass
 
-
 sg.theme("LightBlue3")
 clock = sg.Text("", key="clock")
 label = sg.Text("Type a To-Do:")

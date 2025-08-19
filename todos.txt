@@ -1,10 +1,7 @@
 Clean the house
-Study english
 Learn a Programming Language
 Write a new book
 Read a book
 Improve my project
-Finish the homework
-Create a function
-Create a List
-Hang out with friends
+Run with my friend
+Start a new project
